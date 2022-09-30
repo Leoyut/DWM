@@ -33,13 +33,13 @@ typedef struct {
 	const void *cmd;
 } Sp;
 const char *spcmd1[] = {"telegram-desktop", NULL };
-const char *spcmd2[] = {"st", "-n", "spterm", "-g", "120x34", NULL };
-const char *spcmd3[] = {"st", "-n", "spterm", "-g", "120x34", NULL };
+const char *spcmd2[] = {"st", "-n", "spterm", "-g", "80x24", NULL };
+const char *spcmd3[] = {"st","-n","youtube","-e","yt",NULL};
 static Sp scratchpads[] = {
 	/* name          cmd  */
 	{"telegram-desktop",spcmd1},
-	{"youtube",    spcmd2},
-	{"keepassxc",   spcmd3},
+	{"spterm",    spcmd2},
+	{"youtube",   spcmd3},
 };
 
 /* tagging */
@@ -64,8 +64,9 @@ static const Rule rules[] = {
 	{ NULL,          NULL,	           "Firefox",		 1 << 1,		    0,			 -1 },
 	{ "Google-chrome",NULL,             NULL,	         1 << 1,		    0,			 -1 },
 	{ NULL,          "telegram-desktop",NULL,            SPTAG(0),          1,			 -1 },
-	{ "youtube",     NULL,              NULL,               0,              1,          1,           0,        -1 },
-	{ "6x8y",        NULL,              NULL,               0,              1,          1,           0,        -1 },
+	{ NULL,          "spterm",NULL,            SPTAG(1),          1,			 -1 },
+	{ NULL,          "youtube",NULL,            SPTAG(2),          1,			 -1 },
+	//{ "6x8y",        NULL,              NULL,               0,              1,          1,           0,        -1 },
 	//{ "Spotify",     NULL,              NULL,               SPTAG(1),       1,          1,           0,        -1 },
 	//{ "Spotify",     NULL,              "Spotify",          1<<3,           0,          1,           0,        -1 },
 };
@@ -112,8 +113,7 @@ static Key keys[] = {
    	{ MODKEY,                       XK_s,      spawn,          SHCMD("spotify") },
 	{ MODKEY|ShiftMask,             XK_w,      spawn,          SHCMD("bash setbg1") },
 	{ MODKEY|ShiftMask,             XK_l,      spawn,          SHCMD("/usr/local/bin/slock") },
-	{ MODKEY|ShiftMask,             XK_b,      spawn,         SHCMD("st -c 6x8y") },
-    { MODKEY|ShiftMask,             XK_y,      spawn,         SHCMD("st -c youtube -e yt -s -l -t ") },
+	//{ MODKEY|ShiftMask,             XK_b,      spawn,         SHCMD("st -c 6x8y") },
     { MODKEY,                       XK_g,      spawn,         SHCMD("clipmenu") },
     { MODKEY,                       XK_e,      spawn,         SHCMD("bash ~/shell-scripts/emojipick/emojipick") },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
