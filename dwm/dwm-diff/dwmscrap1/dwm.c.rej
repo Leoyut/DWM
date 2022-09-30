@@ -1,0 +1,32 @@
+--- dwm.c	Fri Apr 06 08:23:18 2012 +0200
++++ dwm.c	Mon Dec 19 15:38:30 2011 +0100
+@@ -1149,10 +1148,6 @@
+ 	updatewindowtype(c);
+ 	updatesizehints(c);
+ 	updatewmhints(c);
+-	c->sfx = c->x;
+-	c->sfy = c->y;
+-	c->sfw = c->w;
+-	c->sfh = c->h;
+ 	XSelectInput(dpy, w, EnterWindowMask|FocusChangeMask|PropertyChangeMask|StructureNotifyMask);
+ 	grabbuttons(c, False);
+ 	if(!c->isfloating)
+@@ -1745,16 +1740,8 @@
+ 		return;
+ 	selmon->sel->isfloating = !selmon->sel->isfloating || selmon->sel->isfixed;
+ 	if(selmon->sel->isfloating)
+-		/*restore last known float dimensions*/
+-		resize(selmon->sel, selmon->sel->sfx, selmon->sel->sfy,
+-		       selmon->sel->sfw, selmon->sel->sfh, False);
+-	else {
+-		/*save last known float dimensions*/
+-		selmon->sel->sfx = selmon->sel->x;
+-		selmon->sel->sfy = selmon->sel->y;
+-		selmon->sel->sfw = selmon->sel->w;
+-		selmon->sel->sfh = selmon->sel->h;
+-	}
++		resize(selmon->sel, selmon->sel->x, selmon->sel->y,
++		       selmon->sel->w, selmon->sel->h, False);
+ 	arrange(selmon);
+ }
+ 
