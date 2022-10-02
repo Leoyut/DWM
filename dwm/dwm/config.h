@@ -35,11 +35,13 @@ typedef struct {
 const char *spcmd1[] = {"telegram-desktop", NULL };
 const char *spcmd2[] = {"st", "-n", "spterm", "-g", "80x24", NULL };
 const char *spcmd3[] = {"st","-n","youtube","-e","yt",NULL};
+const char *spcmd4[] = {"pavucontrol",NULL};
 static Sp scratchpads[] = {
 	/* name          cmd  */
 	{"telegram-desktop",spcmd1},
 	{"spterm",    spcmd2},
 	{"youtube",   spcmd3},
+	{"pavucontrol",   spcmd4},
 };
 
 /* tagging */
@@ -63,9 +65,11 @@ static const Rule rules[] = {
 	{ "Gimp",        NULL,              NULL,               0,              1,			 -1 },
 	{ NULL,          NULL,	           "Firefox",		 1 << 1,		    0,			 -1 },
 	{ "Google-chrome",NULL,             NULL,	         1 << 1,		    0,			 -1 },
+	{ "discord",NULL,             NULL,	         1 << 2,		    0,			 -1 },
 	{ NULL,          "telegram-desktop",NULL,            SPTAG(0),          1,			 -1 },
 	{ NULL,          "spterm",NULL,            SPTAG(1),          1,			 -1 },
 	{ NULL,          "youtube",NULL,            SPTAG(2),          1,			 -1 },
+	{ NULL,          "pavucontrol",NULL,            SPTAG(3),          1,			 -1 },
 	//{ "6x8y",        NULL,              NULL,               0,              1,          1,           0,        -1 },
 	//{ "Spotify",     NULL,              NULL,               SPTAG(1),       1,          1,           0,        -1 },
 	//{ "Spotify",     NULL,              "Spotify",          1<<3,           0,          1,           0,        -1 },
@@ -104,7 +108,9 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbordercolor, "-sf", selfgcolor, NULL };
 static const char *termcmd[]  = { "st", NULL };
+static const char *termcmd2[]  = { "kitty", NULL };
 static const char screensot_script[] = "var=~/Pictures/screenshots/$(date '+%d-%m-%y-%H_%M_%S').png; maim $var; cat $var | xclip -selection clipboard -t image/png; notify-send 'Screenshot captured' -t 3000 -i \"$var\"";
+static const char screensot_script2[] = "var=~/crypto/jookies/$(date '+%d-%m-%y-%H_%M_%S').png; maim $var; cat $var | xclip -selection clipboard -t image/png; notify-send 'Screenshot captured' -t 3000 -i \"$var\"";
 
 
 static Key keys[] = {
@@ -117,6 +123,7 @@ static Key keys[] = {
     { MODKEY,                       XK_g,      spawn,         SHCMD("clipmenu") },
     { MODKEY,                       XK_e,      spawn,         SHCMD("bash ~/shell-scripts/emojipick/emojipick") },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
+	{ MODKEY|ShiftMask,              XK_k, spawn,          {.v = termcmd2 } },
    	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -152,8 +159,9 @@ static Key keys[] = {
 	{ MODKEY,            			XK_u,  	   togglescratch,  {.ui = 0 } },
 	{ MODKEY,            			XK_y,	   togglescratch,  {.ui = 1 } },
 	{ MODKEY,            			XK_x,	   togglescratch,  {.ui = 2 } },
+	{ MODKEY|ShiftMask,            	XK_b,	   togglescratch,  {.ui = 3 } },
 	{ MODKEY,                       XK_F5,     xrdb,           {.v = NULL } },
-  { MODKEY|Mod1Mask,              XK_minus,  setgaps,        {.i = -1 } },
+    { MODKEY|Mod1Mask,              XK_minus,  setgaps,        {.i = -1 } },
 	{ MODKEY|Mod1Mask,              XK_equal,  setgaps,        {.i = +1 } },
 	{ MODKEY|Mod1Mask|ShiftMask,    XK_equal,  setgaps,        {.i = 0  } },
   { 0, XF86XK_MonBrightnessUp,	spawn,	SHCMD("light -A 10") },
@@ -171,6 +179,7 @@ static Key keys[] = {
 	{ 0, XF86XK_AudioForward,	spawn,		SHCMD("mpc seek +10") },
 	{ 0, XF86XK_AudioMicMute,	spawn,		SHCMD("pactl set-source-mute @DEFAULT_SOURCE@ toggle") },
    	{ 0, XK_Print,              spawn,	SHCMD(screensot_script)},
+   	{MODKEY, XK_Print,              spawn,	SHCMD(screensot_script2)},
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)

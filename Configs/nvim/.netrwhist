@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =3
+let g:netrw_dirhist_3='/home/cool/Backup/.config/kitty'
+let g:netrw_dirhist_2='/home/cool/Backup/.config'
+let g:netrw_dirhist_1='/home/cool/Backup/.config/alacritty'
+let g:netrw_dirhist_0='/home/cool/.config/polybar'
+let g:netrw_dirhist_9='/home/cool/Backup/.config/kitty'
+let g:netrw_dirhist_8='/home/cool/Backup/.config/alacritty'
+let g:netrw_dirhist_7='/home/cool/Backup/.config/i3'
+let g:netrw_dirhist_6='/home/cool/.config/alacritty'
+let g:netrw_dirhist_5='/home/cool/Backup/.config/alacritty'
+let g:netrw_dirhist_4='/home/cool/.config/dunst'

@@ -1,7 +1,0 @@
-#!/bin/bash
-cp -urf /home/cool/.config/dunst /home/cool/.config/sublime-text /home/cool/.config/fish /home/cool/.config/kitty /home/cool/.config/nvim /home/cool/.config/omf /home/cool/.config/picom /home/cool/.config/ranger /home/cool/.config/sxiv /home/cool/MainConfigs/Configs
-cp -urf /home/cool/Pictures /home/cool/Emergency /home/cool/dwm /home/cool/important /home/cool/shell-scripts /home/cool/crypto /home/cool/MainConfigs/Home
-cp -urf /home/cool/.xinitrc /home/cool/.Xauthority /home/cool/.Xresources /home/cool/MainConfigs/Home
-cp -urf /home/cool/Arch /home/cool/MainConfigs/Home
-pacman -Qqne > /home/cool/MainConfigs/Home/Arch/ArchDownloadsPacman.txt && echo pacman list done
-pacman -Qqme > /home/cool/MainConfigs/Home/Arch/ArchDownloadsAur.txt && echo aur list done 
